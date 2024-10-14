@@ -5,14 +5,14 @@ variable "enivronment" {
     default   = "dev"
 }
 variable "vpc_cidr" {
-  default     = "10.0.0.0/16"
+  default   = "10.0.0.0/16"
   
 }
 variable "common_tags" {
     default = {
         project     = "expense"
         terraform   = "true"
-        enivronment = "dev"
+        Enivronment = "dev"
     }
 }
 
