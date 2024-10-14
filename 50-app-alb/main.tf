@@ -13,7 +13,7 @@ module "app_alb" {
   )
 }
 
-resource "aws_lb_listener" "front_end" {
+resource "aws_lb_listener" "http" {
   load_balancer_arn = module.app_alb.arn #amazon resource name
   port              = "80"
   protocol          = "HTTP"
@@ -22,25 +22,25 @@ resource "aws_lb_listener" "front_end" {
     type = "fixed-response"
 
     fixed_response {
-      content_type = "text/plain"
+      content_type = "text/html"
       message_body = "<h1>Hello, i am from application ALB</h1>"
       status_code  = "200"
     }
   }
 }
+
 #for Route53 (dns name)
 module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
-  version = "~> 3.0"
-
-  zone_name = var.zone_name
+  
+  zone_name = var.zone_name #aws-dev-rk.online
   records = [
     {
-      name    = "* .app-${var.enivronment}" # *.app-dev.aws-dev-rk.online
+      name    = "*.app-${var.enivronment}" # *.app-dev.aws-dev-rk.online
       type    = "A"
       alias   = {
         name    = module.app_alb.dns_name
-        zone_id = module.app_alb.zone_id
+        zone_id = module.app_alb.zone_id # This belongs ALB internal hosted zone, not ours
       }
       allow_overwrite = true
     }

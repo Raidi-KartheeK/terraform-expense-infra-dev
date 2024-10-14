@@ -19,7 +19,7 @@
 #   }
 # }
 
-module "ec2_instance" {
+module "bastion" {
   source  = "terraform-aws-modules/ec2-instance/aws"
 
   ami = data.aws_ami.joindevops.id
