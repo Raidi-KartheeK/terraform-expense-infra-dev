@@ -61,7 +61,7 @@ module "app_alb_sg" {
 module "web_alb_sg" {
     source = "git::https://github.com/Raidi13/terraform-aws-security-group.git?ref=main"
     project_name = var.project_name
-    environment = var.environment
+    enivronment = var.enivronment
     sg_name = "web-alb" #expense-dev-app-alb
     vpc_id = local.vpc_id
     common_tags = var.common_tags
