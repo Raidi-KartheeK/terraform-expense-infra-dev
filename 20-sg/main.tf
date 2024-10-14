@@ -68,6 +68,18 @@ module "web_alb_sg" {
     sg_tags = var.web_alb_sg_tags
 }
 
+# open vpn configuration 
+module "vpn_sg" {
+  source = "git::https://github.com/Raidi13/terraform-aws-security-group.git?ref=main"
+  project_name = var.project_name
+  enivronment =  var.enivronment
+  sg_name = "vpn" # expense-dev-app-alb
+  vpc_id = local.vpc_id
+  common_tags = var.common_tags
+
+}
+
+
 
 #mysql allowing connections on 3306 from the instance attached to backend SG
 resource "aws_security_group_rule" "mysql-backend" {
@@ -163,4 +175,30 @@ resource "aws_security_group_rule" "app_alb_bastion" {
   protocol          = "tcp"
   source_security_group_id = module.bastion_sg.id
   security_group_id = module.app_alb_sg.id
+}
+# open vpn configuration 
+resource "aws_security_group_rule" "vpn_public" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  source_security_group_id = module.bastion_sg.id
+  security_group_id = module.vpn_sg.id
+}
+resource "aws_security_group_rule" "vpn_public" {
+  type              = "ingress"
+  from_port         = 943
+  to_port           = 943
+  protocol          = "tcp"
+  source_security_group_id = module.bastion_sg.id
+  security_group_id = module.vpn_sg.id
+}
+
+resource "aws_security_group_rule" "vpn_public" {
+  type              = "ingress"
+  from_port         = 1194
+  to_port           = 1194
+  protocol          = "tcp"
+  source_security_group_id = module.bastion_sg.id
+  security_group_id = module.vpn_sg.id
 }

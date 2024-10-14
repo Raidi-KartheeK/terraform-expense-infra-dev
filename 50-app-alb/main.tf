@@ -28,7 +28,7 @@ resource "aws_lb_listener" "front_end" {
     }
   }
 }
-#for route53 (dns name)
+#for Route53 (dns name)
 module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
   version = "~> 3.0"
