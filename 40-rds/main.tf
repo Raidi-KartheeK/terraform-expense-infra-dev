@@ -15,7 +15,7 @@ module "db" {
   port     = "3306"
 
     vpc_security_group_ids = [local.mysql_sg_id]
- 
+    skip_final_snapshot = true
 
 
   tags = merge(
@@ -63,9 +63,8 @@ module "db" {
 module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
 
-  zone_name = var.zone_name
+  zone_name = var.zone_name #aws-dev-rk.online
   records = [
-    
     {
       name    = "mysql-${var.enivronment}" #mysql-dev.aws-dev.rk.online
       type    = "CNAME"

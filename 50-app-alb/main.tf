@@ -30,13 +30,14 @@ resource "aws_lb_listener" "http" {
 }
 
 #for Route53 (dns name)
+
 module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
-  
-  zone_name = var.zone_name #aws-dev-rk.online
+
+  zone_name = var.zone_name #daws81s.online
   records = [
     {
-      name    = "*.app-${var.enivronment}" # *.app-dev.aws-dev-rk.online
+      name    = "*.app-${var.enivronment}" # *.app-dev
       type    = "A"
       alias   = {
         name    = module.app_alb.dns_name

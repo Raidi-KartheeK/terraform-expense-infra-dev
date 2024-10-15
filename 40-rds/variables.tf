@@ -19,8 +19,7 @@ variable "rds_tags" {
     }
 }
 variable "zone_name" {
-    default = {
-      component = "aws-dev-rk.online"  
-    }
+    default = "aws-dev-rk.online"  
 }
+
 
