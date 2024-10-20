@@ -1,6 +1,6 @@
 resource "aws_key_pair" "openvpn" {
   key_name   = "openvpn"
-  public_key = file("~/.ssh.openvpn.pub")
+  public_key = file("~/.ssh/openvpn.pub")
 }
 
 module "vpn" {
