@@ -68,7 +68,7 @@ module "records" {
     {
       name    = "mysql-${var.enivronment}" #mysql-dev.aws-dev.rk.online
       type    = "CNAME"
-      ttl     = 3600
+      ttl     = 1
       records = [
        module.db.db_instance_address
       ]

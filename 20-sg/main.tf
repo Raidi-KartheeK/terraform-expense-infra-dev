@@ -91,6 +91,23 @@ resource "aws_security_group_rule" "mysql-backend" {
   source_security_group_id   = module.backend_sg.id
   security_group_id = module.mysql_sg.id
 }
+# resource "aws_security_group_rule" "backend_frontend" {
+#   type              = "ingress"
+#   from_port         = 8080
+#   to_port           = 8080
+#   protocol          = "tcp"
+#   source_security_group_id       = module.frontend_sg.id
+#   security_group_id = module.backend_sg.id
+# }
+
+# resource "aws_security_group_rule" "frontend_public" {
+#   type              = "ingress"
+#   from_port         = 80
+#   to_port           = 80
+#   protocol          = "tcp"
+#   cidr_blocks       = ["0.0.0.0/0"]
+#   security_group_id = module.frontend_sg.id
+# }
 
 
 resource "aws_security_group_rule" "mysql_bastion" {
