@@ -195,6 +195,14 @@ resource "aws_security_group_rule" "app_alb_bastion" {
   security_group_id = module.app_alb_sg.id
 }
 # open vpn configuration 
+resource "aws_security_group_rule" "vpn_public" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = module.vpn_sg.id
+}
 resource "aws_security_group_rule" "vpn_public_443" {
   type              = "ingress"
   from_port         = 443
