@@ -9,7 +9,7 @@ data "aws_ssm_parameter" "public_subnet_ids" {
 
 data "aws_ami" "joindevops" {
   most_recent = true
-    owners = ["973714476881"] # change with your public id ami
+    owners = ["679593333241"] # change with your  ami id of open vpn access 
   filter {
     name   = "name"
     values = ["OpenVPN Access Server Community Image-fe8020db-*"]
@@ -25,3 +25,4 @@ data "aws_ami" "joindevops" {
     values = ["hvm"]
   }
 }
+
