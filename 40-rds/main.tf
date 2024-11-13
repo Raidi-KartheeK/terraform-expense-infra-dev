@@ -72,7 +72,7 @@ module "records" {
       records = [
        module.db.db_instance_address
       ]
-      allow_overwrite = true
+      allow_overwrite = true # this will overwite previous value.
     },
   ]
 
