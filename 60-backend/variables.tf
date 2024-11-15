@@ -13,8 +13,12 @@ variable "common_tags"{
     }
 }
 
-variable "vpn_tags" {
+variable "backend_tags" {
     default = {
       component = "backend"  
     }
+}
+
+variable "zone_name" {
+  default = "aws-dev-rk.online"
 }

@@ -11,6 +11,10 @@ data "aws_ssm_parameter" "vpc_id" {
     #/expense/dev/public_subnet_ids
   name = "/${var.project_name}/${var.enivronment}/vpc_id"
 }
+data "aws_ssm_parameter" "app_alb_listener_arn" {
+    #/expense/dev/public_subnet_ids
+  name = "/${var.project_name}/${var.enivronment}/app_alb_listener_arn"
+}
 
 data "aws_ami" "joindevops" {
   most_recent = true
