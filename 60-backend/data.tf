@@ -7,6 +7,11 @@ data "aws_ssm_parameter" "private_subnet_ids" {
   name = "/${var.project_name}/${var.enivronment}/private_subnet_ids"
 }
 
+data "aws_ssm_parameter" "vpc_id" {
+    #/expense/dev/public_subnet_ids
+  name = "/${var.project_name}/${var.enivronment}/vpc_id"
+}
+
 data "aws_ami" "joindevops" {
   most_recent = true
   owners = ["973714476881"]
