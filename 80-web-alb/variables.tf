@@ -13,7 +13,7 @@ variable "common_tags"{
     }
 }
 
-variable "app_alb_tags"{
+variable "web_alb_tags"{
     default = {
        component =  "web_alb"
     }
