@@ -64,6 +64,7 @@ module "records" {
   source  = "terraform-aws-modules/route53/aws//modules/records"
 
   zone_name = var.zone_name #aws-dev-rk.online
+ 
   records = [
     {
       name    = "mysql-${var.enivronment}" #mysql-dev.aws-dev.rk.online
