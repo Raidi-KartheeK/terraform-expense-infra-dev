@@ -270,5 +270,14 @@ resource "aws_security_group_rule" "web_alb_https" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = module.web_alb_sg.id
 }
+resource "aws_security_group_rule" "frontend_vpc" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = module.vpn_sg.id
+  security_group_id = module.frontend_sg.id
+}
+
 
 
