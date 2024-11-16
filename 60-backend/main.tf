@@ -74,7 +74,7 @@ depends_on =[aws_ami_from_instance.backend]
 
 }
 
-resource "aws_lb_target_group" "bsckend" {
+resource "aws_lb_target_group" "backend" {
   name     = local.resource_name
   port     = 8080
   protocol = "HTTP"

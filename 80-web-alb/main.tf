@@ -55,7 +55,7 @@ module "records" {
   zone_name = var.zone_name #daws81s.online
   records = [
     {
-      name    = "expense-${var.environment}" # *.app-dev
+      name    = "expense-${var.enivronment}" # *.app-dev
       type    = "A"
       alias   = {
         name    = module.web_alb.dns_name
