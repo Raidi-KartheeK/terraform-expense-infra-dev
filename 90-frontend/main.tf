@@ -79,6 +79,7 @@ resource "null_resource" "frontend" {
     port     = 80
     protocol = "HTTP"
     vpc_id   = local.vpc_id
+    
     health_check {
       healthy_threshold = 2
       interval  = 5
