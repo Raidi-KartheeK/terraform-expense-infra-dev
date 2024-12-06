@@ -1,6 +1,6 @@
 # Expense Architecture
 
-![alt text](expense-infra-dev.drawio.svg)
+![expense-infra-dev drawio ](https://github.com/user-attachments/assets/3c3b4a68-ab25-4960-a936-9081146a3fe4)
 
 # Terraform: Taint
 
