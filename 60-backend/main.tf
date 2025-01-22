@@ -1,6 +1,6 @@
 module "backend" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  key_name = aws_key_pair.openvpn.key_name
+  # key_name = aws_key_pair.openvpn.key_name
   ami = data.aws_ami.joindevops.id
   name = local.resource_name
 
