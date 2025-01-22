@@ -13,12 +13,16 @@ variable "common_tags"{
     }
 }
 
-variable "web_alb_tags"{
+# variable "web_alb_tags"{
+#     default = {
+#        component =  "web_alb"
+#     }
+# }
+variable "frontend_tags"{
     default = {
-       component =  "web_alb"
+       component =  "frontend"
     }
 }
-
 variable "zone_name" {
     default = "aws-dev-rk.online" 
     
