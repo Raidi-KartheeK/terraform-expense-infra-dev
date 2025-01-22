@@ -137,7 +137,7 @@ resource "null_resource" "frontend" {
       triggers = ["launch_template"]
     }
     tag {
-      key                 = "name"
+      key                 = "Name"
       value               = local.resource_name
       propagate_at_launch = true
     }

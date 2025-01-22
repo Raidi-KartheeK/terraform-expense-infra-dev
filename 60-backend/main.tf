@@ -124,8 +124,17 @@ resource "aws_autoscaling_group" "backend" {
   }
   vpc_zone_identifier       = [local.private_subnet_id]
   
+  instance_refresh {
+    strategy = "Rolling"
+    preference {
+      min_healthy_percentage = 50
+    }
+
+    triggers = ["launch_template"]
+    
+    }
   tag {
-    key                 = "name"
+    key                 = "Name"
     value               = local.resource_name
     propagate_at_launch = true
   }
