@@ -10,7 +10,7 @@ module "frontend" {
 
   tags = merge(
     var.common_tags,
-    var.backend_tags,
+    var.frontend_tags,
     {
         Name = local.resource_name
     }
@@ -98,7 +98,7 @@ resource "null_resource" "frontend" {
     instance_type = "t3.micro"
     #subnet_id = local.private_subnet_id
     
-    vpc_security_group_ids = [local.backend_sg_id]
+    vpc_security_group_ids = [local.frontend_sg_id]
     update_default_version = true
     
     tag_specifications {
@@ -120,7 +120,7 @@ resource "null_resource" "frontend" {
     health_check_grace_period = 60
     health_check_type         = "ELB"
     desired_capacity          = 2 # staring of the auto saclling group
-    target_group_arn         = [aws_lb_target_group.frontend.arn]
+    target_group_arns         = [aws_lb_target_group.frontend.arn]
     #force_delete              = true
     launch_template {
       id      = aws_launch_template.frontend.id
@@ -131,7 +131,7 @@ resource "null_resource" "frontend" {
     
     instance_refresh {
       strategy = "Rolling"
-      preference {
+      preferences {
         min_healthy_percentage = 50
       }
       triggers = ["launch_template"]
