@@ -126,8 +126,16 @@ resource "null_resource" "frontend" {
       id      = aws_launch_template.frontend.id
       version = "$Latest"
     }
+    
     vpc_zone_identifier       = [local.public_subnet_id]
     
+    instance_refresh {
+      strategy = "Rolling"
+      preference {
+        min_healthy_percentage = 50
+      }
+      triggers = ["launch_template"]
+    }
     tag {
       key                 = "name"
       value               = local.resource_name
