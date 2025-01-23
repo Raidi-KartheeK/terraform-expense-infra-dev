@@ -27,17 +27,17 @@ resource "null_resource" "backend" {
 
   # Bootstrap script can run on any instance of the cluster
   # So we just choose the first in this case
-  connection {
-    host = module.backend.private_ip
-    type = "ssh"
-    user = "ec2-user"
-    password = "DevOps321"
-  }
+  # connection {
+  #   host = module.backend.private_ip
+  #   type = "ssh"
+  #   user = "ec2-user"
+  #   password = "DevOps321"
+  # }
     
-  provisioner "file" {
-    source = "${var.backend_tags.component}.sh"
-    destination = "/tmp/backend.sh"
-  }
+  # provisioner "file" {
+  #   source = "${var.backend_tags.component}.sh"
+  #   destination = "/tmp/backend.sh"
+  # }
 
   provisioner "remote-exec" {
     # Bootstrap script called with private_ip of each node in the cluster
@@ -52,7 +52,7 @@ resource "null_resource" "backend" {
     instance_id = module.backend.id
     state = "stopped"
     depends_on = [null_resource.backend]
-  }
+}
   
   resource "aws_ami_from_instance" "backend" {
   name               = local.resource_name
@@ -68,7 +68,7 @@ resource "null_resource" "backend_delete" {
  provisioner "local-exec" {
     command = "aws ec2 terminate-instances --instance-ids ${module.backend.id}"
   }
-depends_on =[aws_ami_from_instance.backend]
+  depends_on =[aws_ami_from_instance.backend]
 }
 
 resource "aws_lb_target_group" "backend" {
@@ -116,7 +116,7 @@ resource "aws_autoscaling_group" "backend" {
   health_check_grace_period = 60
   health_check_type         = "ELB"
   desired_capacity          = 2 # staring of the auto saclling group
-   target_group_arn         = [aws_lb_target_group.backend.arn]
+   target_group_arn         = [aws_lb_target_group.backend.arns]
    #force_delete              = true
   launch_template {
     id      = aws_launch_template.backend.id
@@ -126,7 +126,7 @@ resource "aws_autoscaling_group" "backend" {
   
   instance_refresh {
     strategy = "Rolling"
-    preference {
+    preferences {
       min_healthy_percentage = 50
     }
 
@@ -176,7 +176,7 @@ resource "aws_lb_listener_rule" "backend" {
 
   condition {
     host_header {
-      values = ["${var.backend_tags.Component}.app-${var.environment}.${var.zone_name}"]
+      values = ["${var.backend_tags.Component}.app-${var.enivronment}.${var.zone_name}"]
     }
   }
 }

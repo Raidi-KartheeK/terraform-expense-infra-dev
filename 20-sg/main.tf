@@ -80,8 +80,6 @@ module "vpn_sg" {
 
 }
 
-
-
 #mysql allowing connections on 3306 from the instance attached to backend SG
 resource "aws_security_group_rule" "mysql-backend" {
   type              = "ingress"
