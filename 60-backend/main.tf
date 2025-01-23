@@ -132,7 +132,7 @@ resource "aws_autoscaling_group" "backend" {
 
     triggers = ["launch_template"]
     
-    }
+  }
   tag {
     key                 = "Name"
     value               = local.resource_name
