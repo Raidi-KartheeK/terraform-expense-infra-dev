@@ -27,17 +27,17 @@ resource "null_resource" "backend" {
 
   # Bootstrap script can run on any instance of the cluster
   # So we just choose the first in this case
-  # connection {
-  #   host = module.backend.private_ip
-  #   type = "ssh"
-  #   user = "ec2-user"
-  #   password = "DevOps321"
-  # }
+  connection {
+    host = module.backend.private_ip
+    type = "ssh"
+    user = "ec2-user"
+    password = "DevOps321"
+  }
     
-  # provisioner "file" {
-  #   source = "${var.backend_tags.component}.sh"
-  #   destination = "/tmp/backend.sh"
-  # }
+  provisioner "file" {
+    source = "${var.backend_tags.component}.sh"
+    destination = "/tmp/backend.sh"
+  }
 
   provisioner "remote-exec" {
     # Bootstrap script called with private_ip of each node in the cluster
@@ -116,7 +116,7 @@ resource "aws_autoscaling_group" "backend" {
   health_check_grace_period = 60
   health_check_type         = "ELB"
   desired_capacity          = 2 # staring of the auto saclling group
-   target_group_arn         = [aws_lb_target_group.backend.arns]
+   target_group_arns         = [aws_lb_target_group.backend.arn]
    #force_delete              = true
   launch_template {
     id      = aws_launch_template.backend.id
