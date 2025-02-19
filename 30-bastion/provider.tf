@@ -7,8 +7,8 @@ terraform {
   }
   
   backend "s3" {
-    bucket = "aws-remote-state"
-    key    = "expense-bastion"
+    bucket = "aws-remote-state-dev"
+    key    = "expense-bastion-dev"
     region = "us-east-1"
     dynamodb_table = "aws-locking"
   }

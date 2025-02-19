@@ -7,7 +7,7 @@ terraform {
   }
   
   backend "s3" {
-    bucket = "aws-remote-state"
+    bucket = "aws-remote-state-dev"
     key    = "expense-app-alb-dev"
     region = "us-east-1"
     dynamodb_table = "aws-locking"
