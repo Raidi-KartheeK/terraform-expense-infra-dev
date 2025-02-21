@@ -17,7 +17,6 @@ module "backend" {
   )
 }
 # using provisioning null-remote
-# connect to vpn 
 
 resource "null_resource" "backend" {
   # Changes to any instance of the cluster requires re-provisioning
