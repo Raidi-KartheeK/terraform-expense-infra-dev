@@ -15,7 +15,7 @@ module "db" {
   port     = "3306"
 
     vpc_security_group_ids = [local.mysql_sg_id]
-    skip_final_snapshot = true
+    skip_final_snapshot = true # not required at project 
 
 
   tags = merge(
