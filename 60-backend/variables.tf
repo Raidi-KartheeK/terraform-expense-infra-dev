@@ -20,5 +20,5 @@ variable "backend_tags" {
 }
 
 variable "zone_name" {
-  default = "aws-dev-rk.online"
+  default = "karthikraidi.online"
 }

@@ -16,9 +16,9 @@ variable "common_tags"{
 
 
 variable "zone_name" {
-  default = "aws-dev-rk.online"
+  default = "karthikraidi.online"
 }
 
 variable "zone_id" {
-    default = "Z04935171C92BHM9K7BG3"
+    default = "Z02637673132XKMIIEO7B"
 }
