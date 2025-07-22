@@ -8,9 +8,9 @@ data "aws_ssm_parameter" "public_subnet_ids" {
   name = "/${var.project_name}/${var.enivronment}/public_subnet_ids"
 }
 
-data "aws_ami" "bastion" {
+data "aws_ami" "joindevops" {
   most_recent = true
-  owners = ["019292670225"]
+  owners = ["973714476881"]
 
   filter {
     name   = "name"

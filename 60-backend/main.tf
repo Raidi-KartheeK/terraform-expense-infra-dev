@@ -103,7 +103,6 @@ resource "aws_launch_template" "backend" {
       Name = local.resource_name
     }
   }
-  
 }
 
 # auto-scalling group
