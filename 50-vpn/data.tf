@@ -7,9 +7,9 @@ data "aws_ssm_parameter" "public_subnet_ids" {
   name = "/${var.project_name}/${var.enivronment}/public_subnet_ids"
 }
 
-data "aws_ami" "joindevops" {
+data "aws_ami" "vpn" {
   most_recent = true
-  owners = ["#"] # change with your  ami id of open vpn access 
+  owners = ["019292670225"] # change with your  ami id of open vpn access 
   
   filter {
     name   = "name"
